@@ -1,0 +1,14 @@
+services:
+  mission-control:
+    ports:
+      - "127.0.0.1:${MC_PORT:-3000}:${PORT:-3000}"
+    networks:
+      - default
+      - openclaw-external
+    volumes:
+      - /docker/${OPENCLAW_INSTANCE_NAME}/data:/run/openclaw-data:ro   
+
+networks:
+  openclaw-external:
+    name: ${OPENCLAW_NETWORK}
+    external: true
